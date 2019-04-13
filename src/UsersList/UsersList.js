@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Task from "../model/Task"; // <- пока "всегда" нужно не забывать импортировать
 import {ListGroup} from 'react-bootstrap';
-import User from "../model/User";
 import UserItem from "../UserItem/UserItem";
 
 export default class UsersList extends Component {
