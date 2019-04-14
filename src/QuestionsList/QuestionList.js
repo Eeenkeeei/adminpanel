@@ -7,15 +7,14 @@ export default class QuestionList extends Component {
 
 
     handleUsersChange = () => {
-        console.log(this.state.users);
+        console.log(!this.state.toggle);
         this.setState({toggle: !this.state.toggle});
     };
 
     state = {
         users: [],
-        newUsers: [],
         questions: [],
-        toggle: false
+        toggle: false,
     }; // <- ES10: 2019 (Babel)
 
     componentDidMount() {
@@ -51,7 +50,8 @@ export default class QuestionList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.toggle !== this.state.toggle) {
-            this.setState({questions: [], users: []});
+            console.log('DID UPDATE');
+            this.setState({questions: [], users: []}); // сброс предыдущих массивов
             fetch("http://localhost:7777/getSupportList", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'},
@@ -78,7 +78,7 @@ export default class QuestionList extends Component {
                     (error) => {
                         console.log(error)
                     }
-                )
+                );
         }
     }
 
@@ -86,7 +86,7 @@ export default class QuestionList extends Component {
         return (
             <div>
                 {this.state.questions.map(value => <QuestionElement onHandleUsersChange={this.handleUsersChange}
-                                                                    key={value.question} item={value}/>)}
+                                                                    key={value.question}  item={value}/>)}
 
             </div>
         )

@@ -12,6 +12,7 @@ export default class QuestionElement extends Component {
     state = {
         isClicked: false,
         questionBody: '',
+        isUpdated: this.props.isUpdated
     };
 
     handlerAnswerButton = () => {
@@ -22,7 +23,9 @@ export default class QuestionElement extends Component {
     };
 
 
-    handlerAddAnswer = (event) =>{
+    handlerAddAnswer = (event) => {
+        let result1;
+        let result2;
         event.preventDefault();
         console.log(new Question(this.props.item.username, this.props.item.theme, this.props.item.question, this.state.questionBody));
         this.setState({
@@ -37,11 +40,34 @@ export default class QuestionElement extends Component {
                 "question": this.props.item.question,
                 "status": this.state.questionBody
             })
+        }).then((res) => {
+            res.json().then((res)=>{
+
+                result1 = res
+            });
+
         });
+        fetch("http://localhost:7777/getSupportList", {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    result2 = result
+                    if (result1 !== undefined && result2 !== undefined){
+                        this.handlerChangeUsers();
+                    }
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+
+
         this.setState({
             questionBody: ''
         });
-
     };
 
     handleChange = (event) => {
@@ -86,7 +112,9 @@ export default class QuestionElement extends Component {
                         <h6 className="card-subtitle mb-2 h5">Тема вопроса: {this.props.item.theme}</h6>
                         <p className="card-text h5">{this.props.item.question}</p>
                         {this.props.item.status === 'false' ?
-                            <span className="badge badge-danger"><h6>Требуется ответ</h6></span> : <span className="badge badge-success"><h6>Вопрос закрыт</h6></span>}
+                            <span className="badge badge-danger"><h6>Требуется ответ</h6></span> :
+                            <span className="badge badge-success"><h6>Вопрос закрыт</h6></span>
+                        }
                         <p>
                             <button className="btn-outline-dark btn btn-sm" style={{marginTop: 15}}
                                     onClick={this.handlerAnswerButton}>Ответить
