@@ -13,7 +13,7 @@ export default class UsersPage extends Component{
 
     componentDidMount() {
 
-        fetch("http://localhost:7777/getSupportList", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         })

@@ -2,22 +2,20 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
 
-
 export default class Menu extends Component {
 
 
     render() {
         return (
         <menu>
-            {/*<Dropdown.Menu show style={{top: 0}}>*/}
-
+            <ul className="list-group">
                 <Link to='/users'>
-                    <button className="btn btn-outline-dark btn-sm">Пользователи</button>
+                    <span className="list-group-item list-group-item-action a">Пользователи</span>
                 </Link>
                 <Link to='/support'>
-                    <button className="btn btn-outline-dark btn-sm" style={{marginTop: 10}}>Панель поддержки</button>
+                    <li className="list-group-item list-group-item-action a">Панель поддержки</li>
                 </Link>
-            {/*</Dropdown.Menu>*/}
+            </ul>
         </menu>
         );
     }

@@ -9,20 +9,31 @@ class App extends Component {
         // return React.createElement('section', null, React.createElement('div', null, React.createElement('span', null, null)));
         return ( // <- нужно запомнить про открывающую круглую скобку
 
-            <Container>
-                <Row>
-                    <Col className="col-3">
 
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-3">
                         <Menu/>
-
-                    </Col>
-                    <Col className="col-9">
-
+                    </div>
+                    <div className="col-9">
                         <Main/>
-
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
+            // <Container>
+            //     <Row>
+            //         <Col className="col-3">
+            //
+            //
+            //
+            //         </Col>
+            //         <Col className="col-9">
+            //
+            //
+            //
+            //         </Col>
+            //     </Row>
+            // </Container>
         ); // <- внутри JSX наверху должен быть всегда один родитель
     }
 }

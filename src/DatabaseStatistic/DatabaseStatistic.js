@@ -1,18 +1,6 @@
 import React, {Component} from 'react';
-import User from "../model/User";
 
 export default class DatabaseStatistic extends Component{
-
-    state = {
-        users: [
-
-        ],
-        avgAge: 0,
-        avgCounter: 0
-    };
-
-
-
     componentWillMount() {
     }
 

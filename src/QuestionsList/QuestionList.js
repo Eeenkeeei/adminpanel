@@ -7,7 +7,6 @@ export default class QuestionList extends Component {
 
 
     handleUsersChange = () => {
-        console.log(!this.state.toggle);
         this.setState({toggle: !this.state.toggle});
     };
 
@@ -18,7 +17,7 @@ export default class QuestionList extends Component {
     }; // <- ES10: 2019 (Babel)
 
     componentDidMount() {
-        fetch("http://localhost:7777/getSupportList", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         })
@@ -50,9 +49,8 @@ export default class QuestionList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.toggle !== this.state.toggle) {
-            console.log('DID UPDATE');
             this.setState({questions: [], users: []}); // сброс предыдущих массивов
-            fetch("http://localhost:7777/getSupportList", {
+            fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'},
             })

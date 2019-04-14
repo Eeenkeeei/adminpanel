@@ -16,7 +16,6 @@ export default class QuestionElement extends Component {
     };
 
     handlerAnswerButton = () => {
-        console.log('Клик на кнопке');
         this.setState({
             isClicked: !this.state.isClicked
         })
@@ -27,11 +26,10 @@ export default class QuestionElement extends Component {
         let result1;
         let result2;
         event.preventDefault();
-        console.log(new Question(this.props.item.username, this.props.item.theme, this.props.item.question, this.state.questionBody));
         this.setState({
             isClicked: !this.state.isClicked
         });
-        fetch("http://localhost:7777/addAnswer", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/addAnswer", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -41,28 +39,28 @@ export default class QuestionElement extends Component {
                 "status": this.state.questionBody
             })
         }).then((res) => {
-            res.json().then((res)=>{
+            res.json().then((res) => {
 
                 result1 = res
             });
 
         });
-        fetch("http://localhost:7777/getSupportList", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
         })
             .then(res => res.json())
             .then(
                 (result) => {
-                    result2 = result
-                    if (result1 !== undefined && result2 !== undefined){
+                    result2 = result;
+                    if (result1 !== undefined && result2 !== undefined) {
                         this.handlerChangeUsers();
                     }
                 },
                 (error) => {
                     console.log(error)
                 }
-            )
+            );
 
 
         this.setState({
@@ -95,35 +93,40 @@ export default class QuestionElement extends Component {
                         <button type="submit" style={{marginTop: 15}} className="btn btn-outline-success btn-sm"
                                 onClick={this.handlerAddAnswer}>Добавить ответ
                         </button>
-                        <button type="button" style={{marginTop: 15}} className="btn btn-outline-success btn-sm"
-                                onClick={this.handlerChangeUsers}>Обновить
-                        </button>
                     </div>
                 </form>
             ;
         }
 
+        let questionCard;
+        // if (this.props.item.status !== 'false'){
+        //     questionCard = null
+        // }
+        {
+            this.props.item.status === 'false' ? questionCard =
+                <div>
+                    <div className="card" style={{marginTop: 15}}>
+                        <div className="card-body">
+                            <h5 className="card-title">Пользователь: {this.props.item.username}</h5>
+                            <h6 className="card-subtitle mb-2 h5">Тема вопроса: {this.props.item.theme}</h6>
+                            <p className="card-text h5">{this.props.item.question}</p>
+                            {this.props.item.status === 'false' ?
+                                <span className="badge badge-danger"><h6>Требуется ответ</h6></span> :
+                                <span className="badge badge-success"><h6>Вопрос закрыт</h6></span>
+                            }
+                            <p>
+                                <button className="btn-outline-dark btn btn-sm" style={{marginTop: 15}}
+                                        onClick={this.handlerAnswerButton}>Ответить
+                                </button>
+                            </p>
+                            {answerForm}
+                        </div>
+                    </div>
+                </div> : questionCard = null
+        }
 
         return (
-            <div>
-                <div className="card" style={{marginTop: 15}}>
-                    <div className="card-body">
-                        <h5 className="card-title">Пользователь: {this.props.item.username}</h5>
-                        <h6 className="card-subtitle mb-2 h5">Тема вопроса: {this.props.item.theme}</h6>
-                        <p className="card-text h5">{this.props.item.question}</p>
-                        {this.props.item.status === 'false' ?
-                            <span className="badge badge-danger"><h6>Требуется ответ</h6></span> :
-                            <span className="badge badge-success"><h6>Вопрос закрыт</h6></span>
-                        }
-                        <p>
-                            <button className="btn-outline-dark btn btn-sm" style={{marginTop: 15}}
-                                    onClick={this.handlerAnswerButton}>Ответить
-                            </button>
-                        </p>
-                        {answerForm}
-                    </div>
-                </div>
-            </div>
+            questionCard
         )
     }
 }
