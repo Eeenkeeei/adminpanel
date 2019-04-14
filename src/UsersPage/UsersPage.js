@@ -12,13 +12,10 @@ export default class UsersPage extends Component{
     }; // <- ES10: 2019 (Babel)
 
     componentDidMount() {
-        fetch("http://localhost:7777/test", {
-            method: 'POST',
+
+        fetch("http://localhost:7777/getSupportList", {
+            method: 'GET',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                "username": this.p,
-                "message": this.state.newName
-            })
         })
             .then(res => res.json())
             .then(
@@ -28,8 +25,6 @@ export default class UsersPage extends Component{
                             users: [...this.state.users, new User(resultElement)]
                         });
                     }
-
-                    // console.log(this.state.users)
                 },
                 (error) => {
                     console.log(error)

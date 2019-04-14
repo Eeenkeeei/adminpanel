@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Task from "../model/Task"; // <- пока "всегда" нужно не забывать импортировать
-import User from "../model/User";
 import QuestionList from "../QuestionsList/QuestionList";
 
 export default class UsersList extends Component {

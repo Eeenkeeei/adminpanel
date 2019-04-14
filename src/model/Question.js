@@ -1,6 +1,6 @@
 export default class Question {
-    constructor(nickname, theme, question, status) {
-        this.nickname = nickname;
+    constructor(username, theme, question, status) {
+        this.username = username;
         this.theme = theme;
         this.question = question;
         this.status = status;
