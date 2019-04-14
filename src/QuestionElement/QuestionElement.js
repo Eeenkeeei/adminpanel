@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import Question from "../model/Question";
+import User from "../model/User";
 
 
 export default class QuestionElement extends Component {
+    handlerChangeUsers = () => {
+        this.props.onHandleUsersChange();
+    };
 
     state = {
         isClicked: false,
-        questionBody: ''
+        questionBody: '',
     };
+
     handlerAnswerButton = () => {
         console.log('Клик на кнопке');
         this.setState({
             isClicked: !this.state.isClicked
         })
     };
+
 
     handlerAddAnswer = (event) =>{
         event.preventDefault();
@@ -45,6 +51,11 @@ export default class QuestionElement extends Component {
         });
     };
 
+    handleAnswerSendButton = (event) => {
+        this.handlerAddAnswer(event);
+        this.handlerChangeUsers();
+    };
+
     render() {
         const isClicked = this.state.isClicked;
         let answerForm;
@@ -57,6 +68,9 @@ export default class QuestionElement extends Component {
                                 </textarea>
                         <button type="submit" style={{marginTop: 15}} className="btn btn-outline-success btn-sm"
                                 onClick={this.handlerAddAnswer}>Добавить ответ
+                        </button>
+                        <button type="button" style={{marginTop: 15}} className="btn btn-outline-success btn-sm"
+                                onClick={this.handlerChangeUsers}>Обновить
                         </button>
                     </div>
                 </form>
@@ -72,7 +86,7 @@ export default class QuestionElement extends Component {
                         <h6 className="card-subtitle mb-2 h5">Тема вопроса: {this.props.item.theme}</h6>
                         <p className="card-text h5">{this.props.item.question}</p>
                         {this.props.item.status === 'false' ?
-                            <span className="badge badge-danger"><h6>Требуется ответ</h6></span> : <span className="badge badge-success"><h6>Дан ответ</h6></span>}
+                            <span className="badge badge-danger"><h6>Требуется ответ</h6></span> : <span className="badge badge-success"><h6>Вопрос закрыт</h6></span>}
                         <p>
                             <button className="btn-outline-dark btn btn-sm" style={{marginTop: 15}}
                                     onClick={this.handlerAnswerButton}>Ответить
