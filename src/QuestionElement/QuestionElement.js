@@ -41,28 +41,29 @@ export default class QuestionElement extends Component {
         }).then((res) => {
             res.json().then((res) => {
 
-                result1 = res
-                console.log(res)
+                result1 = res;
+                console.log(result1);
+                fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'},
+                })
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            result2 = result;
+                            if (result1 !== undefined && result2 !== undefined) {
+                                console.log(result2);
+                                this.handlerChangeUsers();
+                            }
+                        },
+                        (error) => {
+                            console.log(error)
+                        }
+                    );
             });
 
         });
-        fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
-            method: 'GET',
-            headers: {'Content-Type': 'application/json'},
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    result2 = result;
-                    if (result1 !== undefined && result2 !== undefined) {
-                        console.log(result);
-                        this.handlerChangeUsers();
-                    }
-                },
-                (error) => {
-                    console.log(error)
-                }
-            );
+
 
 
         this.setState({
