@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import QuestionElement from "../QuestionElement/QuestionElement";
 import User from "../model/User";
 import Question from "../model/Question";
+import AnsweredQuestions from "../AnsweredQuestions/AnsweredQuestions";
 
 export default class QuestionList extends Component {
 
@@ -21,7 +22,9 @@ export default class QuestionList extends Component {
         users: [],
         questions: [],
         toggle: false,
-        questionsCounter: 0
+        questionsCounter: 0,
+        isClicked: false,
+        buttonText: 'Показать завершенные запросы'
     }; // <- ES10: 2019 (Babel)
 
     componentDidMount() {
@@ -108,9 +111,39 @@ export default class QuestionList extends Component {
 
     }
 
+    hideAnsweredQuestions = () =>{
+        this.setState({
+            isClicked: !this.state.isClicked,
+        });
+        {this.state.buttonText === 'Показать завершенные запросы' ? this.setState({buttonText: 'Скрыть завершенные запросы'}) : this.setState({buttonText: 'Показать завершенные запросы'})}
+    };
+
     render() {
+        const isClicked = this.state.isClicked;
+        let answeredQuestionsArray = [];
+        this.state.users.map(value => {
+            let support = value.support;
+            support.map(result => {
+                if (result.status !== 'false'){
+                    answeredQuestionsArray.push(new Question(value.username, result.theme, result.question, result.status))
+                }
+            })
+        });
+        let answeredQuestions;
+        if (isClicked) {
+            answeredQuestions =
+                <div>
+                    {answeredQuestionsArray.map(value => <AnsweredQuestions key={value.question} item={value}/>)}
+                </div>
+
+            ;
+        }
+
+
         return (
             <div>
+                <button className="btn btn-outline-dark btn-sm" onClick={this.hideAnsweredQuestions}>{this.state.buttonText}</button>
+                {answeredQuestions}
                 {this.state.questions.map(value => <QuestionElement onHandleUsersChange={this.handleUsersChange}
                                                                     key={value.question}  item={value}/>)}
 

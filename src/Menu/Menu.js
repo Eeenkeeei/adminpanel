@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import Img from "../img/img"
 
 export default class Menu extends Component {
     state = {
@@ -47,14 +46,23 @@ export default class Menu extends Component {
                     </Link>
                     <Link to='/support'>
 
-                            <span className="h6 list-group-item list-group-item-action">
+                            <span className="h6 list-group-item list-group-item-action" style={{marginTop: 5}}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path
                                     d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg> Панель поддержки
                                 <span className="badge badge-danger"
-                                      style={{fontSize: 18}}>{counter}</span>
+                                      style={{fontSize: 18, marginLeft: 5}}>{counter}</span>
+                            </span>
+
+                    </Link>
+                    <Link to='/statistic'>
+
+                            <span className="h6 list-group-item list-group-item-action" style={{marginTop: 5}}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path
+                                    d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/><path
+                                    fill="none" d="M0 0h24v24H0z"/></svg> Статистика
                             </span>
 
                     </Link>

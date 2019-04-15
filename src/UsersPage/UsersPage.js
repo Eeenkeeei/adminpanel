@@ -3,7 +3,6 @@ import UsersList from "../UsersList/UsersList";
 import DatabaseStatistic from "../DatabaseStatistic/DatabaseStatistic";
 import User from "../model/User";
 import Question from "../model/Question";
-
 export default class UsersPage extends Component{
     state = {
         users: [
@@ -57,7 +56,6 @@ export default class UsersPage extends Component{
         return(
 
             <div>
-                <DatabaseStatistic users={this.state.users}/>
                 <UsersList item={this.state.users}/>
             </div>
 
