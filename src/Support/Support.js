@@ -7,19 +7,17 @@ export default class UsersList extends Component {
         questionsCounter: 0
 
     }; // <- ES10: 2019 (Babel)
-    handlerChangeUsers = (counter) => {
+    handleCounterChange = (counter) => {
         this.props.onHandleUsersChange(counter);
+        // console.log('ВЫЗОВ ИЗ questionlist')
     };
 
     render() {
         return (
             <div>
-                <QuestionList/>
+                <QuestionList onCounterChange={this.handleCounterChange}/>
             </div>
         );
-    } // console.log(if () {}); <- нельзя
-    // <expr> ? <true> : <false> <- тернарный оператор
+    }
 
-    // {} <- JSX "вывод" определённого объекта
-    // item={this.state.items[0]} <- передача атрибута в виде объекта, а не строки
 }

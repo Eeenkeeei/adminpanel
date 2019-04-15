@@ -10,21 +10,19 @@ export default class Main extends Component{
         count: 1
     };
 
-    handleUsersChange = (counter) => {
-
+    handleCounterChange = (counter) => {
         this.props.onChangeState(counter)
     };
 
 
 
     render() {
-        console.log(this.props.count);
 
         return(
             <main count={this.state.count}>
                 <Switch>
                     <Route exact path='/users' component={UsersPage} />
-                    <Route path='/support'  render={(props)=><Support count={this.state.count} onHandleUsersChange={this.handleUsersChange} {...props}/>}/>}/>
+                    <Route path='/support'  render={(props)=><Support count={this.state.count} onHandleUsersChange={this.handleCounterChange} {...props}/>}/>}/>
                 </Switch>
             </main>
         )

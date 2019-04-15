@@ -42,6 +42,7 @@ export default class QuestionElement extends Component {
             res.json().then((res) => {
 
                 result1 = res
+                console.log(res)
             });
 
         });
@@ -54,6 +55,7 @@ export default class QuestionElement extends Component {
                 (result) => {
                     result2 = result;
                     if (result1 !== undefined && result2 !== undefined) {
+                        console.log(result);
                         this.handlerChangeUsers();
                     }
                 },

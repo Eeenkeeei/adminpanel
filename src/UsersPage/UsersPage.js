@@ -14,10 +14,6 @@ export default class UsersPage extends Component{
 
     }; // <- ES10: 2019 (Babel)
 
-    handlerChangeUsers = (counter) => {
-        this.props.onHandleUsersChange(counter);
-    };
-
     componentDidMount() {
 
         fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
@@ -39,8 +35,8 @@ export default class UsersPage extends Component{
                                     this.setState({
                                         questionsCounter: this.state.questionsCounter+1
                                     });
-                                    console.log('count',this.state.questionsCounter);
-                                    this.handlerChangeUsers(this.state.questionsCounter);
+
+
                                 }
 
                             })

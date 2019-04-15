@@ -5,16 +5,30 @@ import Main from "./Main/Main"
 
 class App extends Component {
     state = {
-        questionsCounter: 0
+        questionsCounter: 0,
+        toggle: false,
+        toggleCount: 0
     };
+
+    onChangeToggle = () =>{
+        this.setState({
+            toggle: !this.state.toggle
+        })
+    };
+
 
     onChangeState = (counter) =>{
         this.setState({
-            questionsCounter: counter
-        })
-    }
+            questionsCounter: counter,
+            toggleCount: counter,
+
+        });
+        // console.log('counter', counter)
+    };
 
     render() {
+        // console.log(this.state.questionsCounter);
+
         // return React.createElement('section', null, React.createElement('div', null, React.createElement('span', null, null)));
         return ( // <- нужно запомнить про открывающую круглую скобку
 
@@ -22,11 +36,10 @@ class App extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-3">
-                        <Menu/>
-                        {this.state.questionsCounter}
+                        <Menu count={this.state.questionsCounter}/>
                     </div>
                     <div className="col-9">
-                        <Main  count={this.state.questionsCounter} onChangeState={this.onChangeState}/>
+                        <Main onChangeState={this.onChangeState}/>
                     </div>
                 </div>
             </div>

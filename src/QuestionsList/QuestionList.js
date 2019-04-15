@@ -10,6 +10,13 @@ export default class QuestionList extends Component {
         this.setState({toggle: !this.state.toggle});
     };
 
+    handleCounter = (counter) => {
+        this.props.onCounterChange(counter);
+
+    };
+
+
+
     state = {
         users: [],
         questions: [],
@@ -33,6 +40,13 @@ export default class QuestionList extends Component {
                                 this.setState({
                                     questions: [...this.state.questions, objectToPush]
                                 });
+                                if (objectToPush.status === 'false') {
+                                    this.setState({
+                                        questionsCounter: this.state.questionsCounter+1
+                                    });
+                                    // console.log('count',this.state.questionsCounter);
+                                    this.handleCounter(this.state.questionsCounter);
+                                }
 
                             })
                         }
@@ -50,10 +64,9 @@ export default class QuestionList extends Component {
 
     }
 
-
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.toggle !== this.state.toggle) {
-            this.setState({questions: [], users: []}); // сброс предыдущих массивов
+            this.setState({questions: [], users: [], questionsCounter: 0}); // сброс предыдущих массивов
             fetch("https://timetable-eeenkeeei.herokuapp.com/getSupportList", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'},
@@ -69,6 +82,16 @@ export default class QuestionList extends Component {
                                     this.setState({
                                         questions: [...this.state.questions, objectToPush]
                                     });
+                                    if (objectToPush.status === 'false') {
+                                        this.setState({
+                                            questionsCounter: this.state.questionsCounter+1
+                                        });
+                                        console.log('count',this.state.questionsCounter);
+                                        this.handleCounter(this.state.questionsCounter);
+                                    } else {
+                                        this.handleCounter(this.state.questionsCounter);
+                                    }
+
                                 })
                             }
                             this.setState({
