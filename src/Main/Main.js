@@ -6,14 +6,25 @@ import UsersPage from "../UsersPage/UsersPage";
 
 
 export default class Main extends Component{
+    state = {
+        count: 1
+    };
+
+    handleUsersChange = (counter) => {
+
+        this.props.onChangeState(counter)
+    };
+
+
 
     render() {
+        console.log(this.props.count);
 
         return(
-            <main>
+            <main count={this.state.count}>
                 <Switch>
-                    <Route exact path='/users' component={UsersPage}/>
-                    <Route path='/support' component={Support}/>
+                    <Route exact path='/users' component={UsersPage} />
+                    <Route path='/support'  render={(props)=><Support count={this.state.count} onHandleUsersChange={this.handleUsersChange} {...props}/>}/>}/>
                 </Switch>
             </main>
         )

@@ -14,6 +14,7 @@ export default class QuestionList extends Component {
         users: [],
         questions: [],
         toggle: false,
+        questionsCounter: 0
     }; // <- ES10: 2019 (Babel)
 
     componentDidMount() {
@@ -32,6 +33,7 @@ export default class QuestionList extends Component {
                                 this.setState({
                                     questions: [...this.state.questions, objectToPush]
                                 });
+
                             })
                         }
                         this.setState({
@@ -43,7 +45,9 @@ export default class QuestionList extends Component {
                 (error) => {
                     console.log(error)
                 }
-            )
+            );
+
+
     }
 
 
@@ -78,6 +82,7 @@ export default class QuestionList extends Component {
                     }
                 );
         }
+
     }
 
     render() {

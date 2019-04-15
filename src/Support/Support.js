@@ -3,7 +3,13 @@ import QuestionList from "../QuestionsList/QuestionList";
 
 export default class UsersList extends Component {
     // state -> состояние компонента - mutable (изменяемое)
+    state = {
+        questionsCounter: 0
 
+    }; // <- ES10: 2019 (Babel)
+    handlerChangeUsers = (counter) => {
+        this.props.onHandleUsersChange(counter);
+    };
 
     render() {
         return (
