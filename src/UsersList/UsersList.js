@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Task from "../model/Task"; // <- пока "всегда" нужно не забывать импортировать
 import {ListGroup} from 'react-bootstrap';
 import UserItem from "../UserItem/UserItem";
-
+import "animate.css"
 export default class UsersList extends Component {
 
     componentDidMount() {
@@ -11,7 +11,7 @@ export default class UsersList extends Component {
     render() {
 
         return (
-            <div style={{cursor: 'pointer'}}>
+            <div style={{cursor: 'pointer'}} className="fadeIn wow animated">
                 <ListGroup>
                     {this.props.item.map(value => <UserItem key={value.username} item={value}/>)}
                 </ListGroup>

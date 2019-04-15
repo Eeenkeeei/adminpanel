@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import Question from "../model/Question";
 import User from "../model/User";
-
+import "animate.css"
 
 export default class QuestionElement extends Component {
     handlerChangeUsers = () => {
@@ -88,7 +88,7 @@ export default class QuestionElement extends Component {
         let answerForm;
         if (isClicked) {
             answerForm =
-                <form>
+                <form className="fadeIn wow animated">
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Ответ:</label>
                         <textarea className="form-control" value={this.state.questionBody} onChange={this.handleChange}>
@@ -102,12 +102,9 @@ export default class QuestionElement extends Component {
         }
 
         let questionCard;
-        // if (this.props.item.status !== 'false'){
-        //     questionCard = null
-        // }
         {
             this.props.item.status === 'false' ? questionCard =
-                <div>
+                <div className="fadeIn wow animated">
                     <div className="card" style={{marginTop: 15}}>
                         <div className="card-body">
                             <h5 className="card-title">Пользователь: {this.props.item.username}</h5>

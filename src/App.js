@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Menu from "./Menu/Menu"
 import Main from "./Main/Main"
-
+import "animate.css"
 class App extends Component {
     state = {
         questionsCounter: 0,
@@ -33,7 +33,7 @@ class App extends Component {
         return ( // <- нужно запомнить про открывающую круглую скобку
 
 
-            <div className="container-fluid">
+            <div className="container-fluid fadeIn wow animated">
                 <div className="row">
                     <div className="col-3">
                         <Menu count={this.state.questionsCounter}/>
