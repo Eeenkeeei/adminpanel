@@ -11,7 +11,7 @@ export default class PasswordForm extends Component {
 
     handlerLoginForm = (event) =>{
         event.preventDefault();
-        fetch("http://localhost:7777/confirmAdminPassword", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/confirmAdminPassword", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
