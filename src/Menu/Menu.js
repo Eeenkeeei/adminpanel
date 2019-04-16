@@ -67,6 +67,14 @@ export default class Menu extends Component {
                             </span>
 
                     </Link>
+                    <Link to='/news'>
+
+                            <span className="h6 list-group-item list-group-item-action" style={{marginTop: 5}}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path
+                                    d="M0 0h24v24H0z" fill="none"/><path d="M5 4v2h14V4H5zm0 10h4v6h6v-6h4l-7-7-7 7z"/></svg> Добавить новость
+                            </span>
+
+                    </Link>
                     <Link to='/statistic'>
 
                             <span className="h6 list-group-item list-group-item-action" style={{marginTop: 5}}>
