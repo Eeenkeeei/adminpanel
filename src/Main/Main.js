@@ -5,7 +5,7 @@ import Support from "../Support/Support";
 import UsersPage from "../UsersPage/UsersPage";
 import "animate.css"
 import DatabaseStatistic from "../DatabaseStatistic/DatabaseStatistic";
-import {Helmet} from "react-helmet";
+import SupportArchive from "../SupportArchive/SupportArchive";
 
 export default class Main extends Component{
     state = {
@@ -17,7 +17,6 @@ export default class Main extends Component{
     };
 
 
-
     render() {
 
         return(
@@ -25,6 +24,7 @@ export default class Main extends Component{
                 <Switch>
                     <Route exact path='/users' component={UsersPage} className="fadeIn wow animated"/>
                     <Route path='/support'  render={(props)=><Support count={this.state.count} onHandleUsersChange={this.handleCounterChange} {...props}/>}/>}/>
+                    <Route path='/archive'   component={SupportArchive} className="fadeIn wow animated"/>
                     <Route exact path='/statistic' component={DatabaseStatistic} className="fadeIn wow animated" />
                 </Switch>
             </main>

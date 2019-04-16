@@ -111,39 +111,11 @@ export default class QuestionList extends Component {
 
     }
 
-    hideAnsweredQuestions = () =>{
-        this.setState({
-            isClicked: !this.state.isClicked,
-        });
-        {this.state.buttonText === 'Показать завершенные запросы' ? this.setState({buttonText: 'Скрыть завершенные запросы'}) : this.setState({buttonText: 'Показать завершенные запросы'})}
-    };
-
     render() {
-        const isClicked = this.state.isClicked;
-        let answeredQuestionsArray = [];
-        this.state.users.map(value => {
-            let support = value.support;
-            support.map(result => {
-                if (result.status !== 'false'){
-                    answeredQuestionsArray.push(new Question(value.username, result.theme, result.question, result.status))
-                }
-            })
-        });
-        let answeredQuestions;
-        if (isClicked) {
-            answeredQuestions =
-                <div>
-                    {answeredQuestionsArray.map(value => <AnsweredQuestions key={value.question} item={value}/>)}
-                </div>
-
-            ;
-        }
 
 
         return (
             <div>
-                <button className="btn btn-outline-dark btn-sm" onClick={this.hideAnsweredQuestions}>{this.state.buttonText}</button>
-                {answeredQuestions}
                 {this.state.questions.map(value => <QuestionElement onHandleUsersChange={this.handleUsersChange}
                                                                     key={value.question}  item={value}/>)}
 

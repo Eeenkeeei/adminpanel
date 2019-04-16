@@ -31,8 +31,6 @@ class App extends Component {
 
         // return React.createElement('section', null, React.createElement('div', null, React.createElement('span', null, null)));
         return ( // <- нужно запомнить про открывающую круглую скобку
-
-
             <div className="container-fluid fadeIn wow animated">
                 <div className="row">
                     <div className="col-3">
