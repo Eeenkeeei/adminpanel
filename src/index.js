@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import PasswordForm from "./PasswordForm/PasswordForm"
 ReactDOM.render((
     <BrowserRouter>
-        <App/>
+        <PasswordForm/>
     </BrowserRouter>
 ), document.getElementById('root'));
 

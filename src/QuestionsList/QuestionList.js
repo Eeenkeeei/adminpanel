@@ -113,6 +113,7 @@ export default class QuestionList extends Component {
 
     render() {
         let questionListBody;
+
         this.state.users.map(user => {
             let support = user.support;
             support.map(value => {

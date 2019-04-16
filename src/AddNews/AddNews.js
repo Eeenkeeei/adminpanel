@@ -13,7 +13,7 @@ export default class AddNews extends Component {
     handleAddNews = (event) => {
         event.preventDefault();
         console.log(this.state.header, this.state.author, this.state.body);
-        fetch("http://localhost:7777/addNews", {
+        fetch("https://timetable-eeenkeeei.herokuapp.com/addNews", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -68,7 +68,7 @@ export default class AddNews extends Component {
         let resultText;
         {result === 'added' ? resultText = <span className="badge-success badge fadeIn wow animated"><h5>Новость добавлена</h5> </span>: resultText = null}
         return (
-            <div>
+            <div className="fadeIn wow animated">
                 <Form>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Заголовок статьи</Form.Label>
