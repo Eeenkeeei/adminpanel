@@ -10,7 +10,7 @@ export default class AnsweredQuestions extends Component {
                         <h5 className="card-title">Пользователь: {this.props.item.username}</h5>
                         <h6 className="card-subtitle mb-2 h5">Тема вопроса: {this.props.item.theme}</h6>
                         <p className="card-text h5">{this.props.item.question}</p>
-                        <span className="badge-success badge"><h6>Ответ дан. Текст ответа:</h6></span>
+                        <span className="badge-success badge"><h6>Ответ от поддержки:</h6></span>
                         <p>
                         <span className="h5">{this.props.item.status}</span>
                         </p>

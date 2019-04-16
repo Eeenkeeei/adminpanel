@@ -112,13 +112,22 @@ export default class QuestionList extends Component {
     }
 
     render() {
-
+        let questionListBody;
+        this.state.users.map(user => {
+            let support = user.support;
+            support.map(value => {
+                if (value.status === 'false'){
+                    questionListBody = this.state.questions.map(value => <QuestionElement onHandleUsersChange={this.handleUsersChange}
+                                                                                          key={value.question}  item={value}/>)
+                } else {
+                    questionListBody = <span className="h5">Новых обращений нет</span>
+                }
+            })
+        });
 
         return (
             <div>
-                {this.state.questions.map(value => <QuestionElement onHandleUsersChange={this.handleUsersChange}
-                                                                    key={value.question}  item={value}/>)}
-
+                {questionListBody}
             </div>
         )
     }
