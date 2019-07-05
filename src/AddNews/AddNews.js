@@ -36,6 +36,7 @@ export default class AddNews extends Component {
                 }
             );
 
+
         this.setState({
             header: '',
             author: '',
